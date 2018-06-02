@@ -1,0 +1,35 @@
+[
+  {
+    "id": 0,
+    "firstname": "John",
+    "lastname": "Deagle",
+    "age": "28",
+    "location": "USA",
+    "email": "dgjohn@email.com"
+  },
+  {
+    "id": 1,
+    "firstname": "Lena",
+    "lastname": "Tsaryk",
+    "age": "20",
+    "location": "Germany",
+    "email": "lenats@email.com"
+  },
+  {
+    "id": 2,
+    "firstname": "Anton",
+    "lastname": "Alen",
+    "age": "36",
+    "location": "Canada",
+    "email": "aanton@email.com"
+  },
+  {
+    "id": 3,
+    "firstname": "Mr",
+    "lastname": "Robot",
+    "age": "0",
+    "location": "internet",
+    "email": "admin@email.com"
+  }
+
+]
