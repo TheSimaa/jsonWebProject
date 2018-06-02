@@ -77,7 +77,7 @@ func createUser(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(users)
 }
 
-func updateUser(w http.ResponseWriter, r *http.Request)  {
+func updateUser(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 
@@ -85,9 +85,9 @@ func updateUser(w http.ResponseWriter, r *http.Request)  {
 	r.ParseForm()
 	idUser, _ := strconv.Atoi(params["id"])
 
-	for index,item := range users{
+	for index, item := range users {
 
-		if item.ID == idUser{
+		if item.ID == idUser {
 			users[index].Age = r.Form.Get("age")
 			users[index].Email = r.Form.Get("email")
 			users[index].Firstname = r.Form.Get("firstname")
@@ -95,6 +95,22 @@ func updateUser(w http.ResponseWriter, r *http.Request)  {
 			users[index].Location = r.Form.Get("location")
 		}
 
+	}
+	json.NewEncoder(w).Encode(users)
+}
+
+func deleteUser(w http.ResponseWriter, r *http.Request) {
+
+	w.Header().Set("Content-Type", "application/json")
+
+	params := mux.Vars(r)
+	idUser, _ := strconv.Atoi(params["id"])
+
+	for index, item := range users {
+		if item.ID == idUser {
+			users = append(users[:index], users[index+1:]...)
+			break
+		}
 	}
 	json.NewEncoder(w).Encode(users)
 }
@@ -108,7 +124,7 @@ func main() {
 	r.HandleFunc("/api/user/{id}", getUser).Methods("GET")
 	r.HandleFunc("/api/user", createUser).Methods("POST")
 	r.HandleFunc("/api/user/{id}", updateUser).Methods("PUT")
-	//r.HandleFunc("/api/user/{id}", deleteUser).Methods("DELETE")
+	r.HandleFunc("/api/user/{id}", deleteUser).Methods("DELETE")
 
 	http.HandleFunc("/", nil)
 	http.ListenAndServe(":8000", r)
