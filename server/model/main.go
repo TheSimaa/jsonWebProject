@@ -118,7 +118,7 @@ func deleteUser(w http.ResponseWriter, r *http.Request) {
 func main() {
 
 	r := mux.NewRouter()
-	readJsonFile("./json/users.json")
+	readJsonFile("server/json/users.json")
 
 	r.HandleFunc("/api/users", getUsers).Methods("GET")
 	r.HandleFunc("/api/user/{id}", getUser).Methods("GET")
